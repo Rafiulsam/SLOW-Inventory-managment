@@ -2,15 +2,15 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
-import dns from "node:dns";
+// import dns from "node:dns";
 import productRoutes from "./routes/productRoutes.js";
 
 const PORT = process.env.PORT || 5000;
 
-dns.setServers([
-  '1.1.1.1',
-  '8.8.8.8',
-])
+// dns.setServers([
+//   '1.1.1.1',
+//   '8.8.8.8',
+// ])
 
 dotenv.config();
 

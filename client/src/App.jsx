@@ -1,5 +1,4 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import "./App.css";
 import Navbar from "./components/Navbar";
 import DashboardPage from "./pages/DashboardPage";
 import ProductAddPage from "./pages/ProductAddPage";
@@ -9,7 +8,7 @@ import ProductUpdatePage from "./pages/ProductUpdatePage";
 function App() {
   return (
     <BrowserRouter>
-      <main className="app-shell min-h-screen text-[#1d2926]">
+      <main className="min-h-screen bg-[#f4f5ef] px-[clamp(20px,6vw,96px)] pt-[56px] pb-20 text-[#1d2926] max-[760px]:px-5 max-[760px]:pt-[34px] max-[760px]:pb-14">
         <Navbar />
 
         <Routes>

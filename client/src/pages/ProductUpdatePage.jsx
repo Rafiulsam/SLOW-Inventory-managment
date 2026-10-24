@@ -70,32 +70,32 @@ function ProductUpdatePage() {
     });
 
   return (
-    <section className="inventory-panel" aria-labelledby="inventory-title">
-      <div className="panel-heading">
+    <section className="mx-auto max-w-[1400px] border-t border-[#bdc5bb]" aria-labelledby="inventory-title">
+      <div className="grid grid-cols-[1fr_auto] items-center gap-6 py-7 pb-6 max-[760px]:grid-cols-1">
         <div>
-          <p className="eyebrow">Live catalog</p>
-          <h2 id="inventory-title">Update product details</h2>
+          <p className="mb-3 text-[#bb4b32] text-[0.72rem] font-extrabold tracking-[0.16em] uppercase">Live catalog</p>
+          <h2 className="mb-0 font-[Georgia,'Times_New_Roman',serif] text-[2rem] font-medium" id="inventory-title">Update product details</h2>
         </div>
         {status === "ready" && (
-          <span className="connection-state">Connected</span>
+          <span className="text-[#3f765e] text-[0.78rem] font-bold uppercase">Connected</span>
         )}
       </div>
 
-      <div className="product-controls">
-        <label className="search-field">
+      <div className="grid grid-cols-[minmax(220px,1.5fr)_repeat(2,minmax(160px,0.65fr))] gap-4 pb-6 max-[760px]:grid-cols-1">
+        <label className="grid gap-[7px] text-[#66716c] text-[0.7rem] font-extrabold tracking-[0.08em] uppercase">
           <span>Search products</span>
           <input
-            className="border border-[#c3cbc1] bg-[#fbfcf8] px-2.5 py-2.5 text-[#1d2926] shadow-none focus:outline-2 focus:outline-[#bb4b32]"
+            className="box-border w-full rounded-[2px] border border-[#c3cbc1] bg-[#fbfcf8] px-[10px] py-[11px] text-[0.9rem] font-normal tracking-normal text-[#1d2926] normal-case shadow-none focus:border-[#bb4b32] focus:outline-2 focus:outline-[#bb4b32] focus:outline-offset-1"
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Search by name"
             type="search"
             value={search}
           />
         </label>
-        <label className="control-field">
+        <label className="grid gap-[7px] text-[#66716c] text-[0.7rem] font-extrabold tracking-[0.08em] uppercase">
           <span>Stock status</span>
           <select
-            className="border border-[#c3cbc1] bg-[#fbfcf8] px-2.5 py-2.5 text-[#1d2926] shadow-none focus:outline-2 focus:outline-[#bb4b32]"
+            className="box-border w-full rounded-[2px] border border-[#c3cbc1] bg-[#fbfcf8] px-[10px] py-[11px] text-[0.9rem] font-normal tracking-normal text-[#1d2926] normal-case shadow-none focus:border-[#bb4b32] focus:outline-2 focus:outline-[#bb4b32] focus:outline-offset-1"
             onChange={(event) => setStockFilter(event.target.value)}
             value={stockFilter}
           >
@@ -105,10 +105,10 @@ function ProductUpdatePage() {
             <option value="out">Out of stock</option>
           </select>
         </label>
-        <label className="control-field">
+        <label className="grid gap-[7px] text-[#66716c] text-[0.7rem] font-extrabold tracking-[0.08em] uppercase">
           <span>Sort by</span>
           <select
-            className="border border-[#c3cbc1] bg-[#fbfcf8] px-2.5 py-2.5 text-[#1d2926] shadow-none focus:outline-2 focus:outline-[#bb4b32]"
+            className="box-border w-full rounded-[2px] border border-[#c3cbc1] bg-[#fbfcf8] px-[10px] py-[11px] text-[0.9rem] font-normal tracking-normal text-[#1d2926] normal-case shadow-none focus:border-[#bb4b32] focus:outline-2 focus:outline-[#bb4b32] focus:outline-offset-1"
             onChange={(event) => setSortBy(event.target.value)}
             value={sortBy}
           >
@@ -121,24 +121,24 @@ function ProductUpdatePage() {
       </div>
 
       {status === "loading" && (
-        <p className="empty-state">Loading products...</p>
+        <p className="py-8 text-[#66716c]">Loading products...</p>
       )}
       {status === "error" && (
-        <p className="empty-state error-state">
+        <p className="py-8 text-[#bb4b32]">
           Could not load products: {error}
         </p>
       )}
       {status === "ready" && products.length === 0 && (
-        <p className="empty-state">No products found yet.</p>
+        <p className="py-8 text-[#66716c]">No products found yet.</p>
       )}
       {status === "ready" &&
         products.length > 0 &&
         filteredProducts.length === 0 && (
-          <p className="empty-state">No products match your filters.</p>
+          <p className="py-8 text-[#66716c]">No products match your filters.</p>
         )}
       {status === "ready" && filteredProducts.length > 0 && (
-        <div className="product-table">
-          <div className="table-header" aria-hidden="true">
+        <div className="overflow-x-auto border-t border-[#d6dbd2]">
+          <div className="grid min-w-[900px] grid-cols-[minmax(170px,1.25fr)_repeat(3,minmax(125px,1fr))_minmax(140px,0.9fr)] items-center gap-[18px] py-[18px] text-[#768078] text-[0.7rem] font-extrabold tracking-[0.08em] uppercase" aria-hidden="true">
             <span>Product</span>
             {updateFields.map((field) => (
               <span key={field.key}>{field.label}</span>

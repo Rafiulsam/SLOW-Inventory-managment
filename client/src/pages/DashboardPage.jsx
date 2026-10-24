@@ -63,34 +63,40 @@ function DashboardPage() {
   ];
 
   return (
-    <section className="dashboard" aria-labelledby="dashboard-title">
-      <div className="dashboard-heading">
+    <section className="mx-auto max-w-[1400px]" aria-labelledby="dashboard-title">
+      <div className="flex items-end justify-between gap-6 pb-8 max-[760px]:flex-col max-[760px]:items-start">
         <div>
-          <p className="eyebrow">Overview</p>
-          <h2 id="dashboard-title">Inventory at a glance</h2>
+          <p className="mb-3 text-[#bb4b32] text-[0.72rem] font-extrabold tracking-[0.16em] uppercase">Overview</p>
+          <h2 className="mb-0 font-[Georgia,'Times_New_Roman',serif] text-[clamp(2rem,4vw,3.6rem)] font-medium" id="dashboard-title">Inventory at a glance</h2>
         </div>
         {status === "ready" && (
-          <span className="connection-state">Updated now</span>
+          <span className="text-[#3f765e] text-[0.78rem] font-bold uppercase">Updated now</span>
         )}
       </div>
 
       {status === "loading" && (
-        <p className="empty-state">Loading dashboard...</p>
+        <p className="py-8 text-[#66716c]">Loading dashboard...</p>
       )}
       {status === "error" && (
-        <p className="empty-state error-state">
+        <p className="py-8 text-[#bb4b32]">
           Could not load dashboard: {error}
         </p>
       )}
       {status === "ready" && (
-        <div className="metric-grid">
+        <div className="grid grid-cols-12 gap-4 max-[760px]:grid-cols-2">
           {metrics.map((metric, index) => (
             <article
-              className={`metric-card metric-card-${index + 1}`}
+              className={`flex min-h-[170px] flex-col justify-between border-t-4 bg-[#fbfcf8] p-[22px] ${
+                index === 4
+                  ? "col-span-6 border-t-[#3f765e] max-[760px]:col-span-full"
+                  : `col-span-3 border-t-[#1d2926] max-[760px]:col-span-1 ${
+                      index === 2 || index === 3 ? "border-t-[#bb4b32]" : ""
+                    }`
+              }`}
               key={metric.label}
             >
-              <span>{metric.label}</span>
-              <strong>{metric.value}</strong>
+              <span className="text-[#66716c] text-[0.76rem] font-extrabold tracking-[0.08em] uppercase">{metric.label}</span>
+              <strong className="text-[#1d2926] font-[Georgia,'Times_New_Roman',serif] text-[clamp(2.5rem,5vw,4.8rem)] font-medium leading-[0.9]">{metric.value}</strong>
             </article>
           ))}
         </div>

@@ -115,16 +115,16 @@ function ProductRow({ onDeleted, onSaved, product }) {
   };
 
   return (
-    <form className="product-row" onSubmit={saveProduct}>
-      <div className="product-name">
-        <strong>{product.name}</strong>
-        <span>{product.unit || "piece"}</span>
+    <form className="grid min-w-[900px] grid-cols-[minmax(170px,1.25fr)_repeat(3,minmax(125px,1fr))_minmax(140px,0.9fr)] items-center gap-[18px] border-t border-[#d6dbd2] py-[18px]" onSubmit={saveProduct}>
+      <div className="grid gap-[5px]">
+        <strong className="text-[0.98rem]">{product.name}</strong>
+        <span className="text-[#768078] text-[0.8rem]">{product.unit || "piece"}</span>
       </div>
       {updateFields.map((field) => (
-        <label className="field" key={field.key}>
-          <span className="mobile-label">{field.label}</span>
+        <label key={field.key}>
+          <span className="hidden">{field.label}</span>
           <input
-            className="border border-[#c3cbc1] bg-[#fbfcf8] px-2.5 py-2.5 text-[#1d2926] shadow-none focus:outline-2 focus:outline-[#bb4b32]"
+            className="box-border w-full rounded-[2px] border border-[#c3cbc1] bg-[#fbfcf8] px-[10px] py-[11px] text-[#1d2926] shadow-none focus:border-[#bb4b32] focus:outline-2 focus:outline-[#bb4b32] focus:outline-offset-1"
             aria-label={`${field.label} for ${product.name}`}
             min="0"
             onChange={(event) => updateValue(field.key, event.target.value)}
@@ -135,22 +135,25 @@ function ProductRow({ onDeleted, onSaved, product }) {
           />
         </label>
       ))}
-      <div className="save-cell">
+      <div className="flex justify-items-start gap-[7px]">
         <button
-          className="bg-[#1d2926] p-2 rounded-lg text-xs font-bold text-[#fffaf1] transition-colors hover:bg-[#bb4b32] disabled:cursor-wait disabled:opacity-60 cursor-pointer"
+          className="bg-[#1d2926] p-2 rounded-md text-xs font-bold text-[#fffaf1] transition-colors hover:bg-[#bb4b32] disabled:cursor-wait disabled:opacity-60 cursor-pointer"
           disabled={status === "saving"}
           type="submit"
         >
-          {status === "saving" ? "Saving..." : "Save changes"}
+          {status === "saving" ? "Saving..." : "Save Changes"}
         </button>
-        <button className="delete-button" onClick={deleteProduct} type="button">
-          <FaTrashCan />
-        </button>
-        <div className="row-actions">
-          <Link className="details-link" to={`/products/${product._id}`}>
-            View details
+        <div className="flex flex-wrap items-center gap-[10px]">
+          <Link
+            className="rounded-md bg-[#dde2de] p-2 text-center text-[#716666] text-[0.72rem] [font-family:inherit] font-bold no-underline hover:bg-gray-300 hover:text-[#1d2926]"
+            to={`/products/${product._id}`}
+          >
+            View Details
           </Link>
         </div>
+        <button className="cursor-pointer border-0 bg-transparent p-0 text-[#f50707] hover:text-[#bb4b32]" onClick={deleteProduct} type="button">
+          <FaTrashCan size={25} />
+        </button>
       </div>
     </form>
   );

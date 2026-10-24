@@ -69,29 +69,29 @@ function ProductAddPage() {
   };
 
   return (
-    <section className="form-panel" aria-labelledby="add-product-title">
-      <div className="panel-heading">
+    <section className="mx-auto max-w-[900px] border-t border-[#bdc5bb]" aria-labelledby="add-product-title">
+      <div className="grid grid-cols-[1fr_auto] items-center gap-6 py-7 pb-6 max-[760px]:grid-cols-1">
         <div>
-          <p className="eyebrow">New catalog entry</p>
-          <h2 id="add-product-title">Add a product</h2>
+          <p className="mb-3 text-[#bb4b32] text-[0.72rem] font-extrabold tracking-[0.16em] uppercase">New catalog entry</p>
+          <h2 className="mb-0 font-[Georgia,'Times_New_Roman',serif] text-[2rem] font-medium" id="add-product-title">Add a product</h2>
         </div>
       </div>
 
-      <form className="product-form" onSubmit={addProduct}>
-        <label className="form-field">
+      <form className="grid grid-cols-2 gap-6 pt-2 max-[760px]:grid-cols-1" onSubmit={addProduct}>
+        <label className="grid gap-2 text-[#66716c] text-[0.75rem] font-bold tracking-[0.04em] uppercase">
           <span>Product name</span>
           <input
-            className="border border-[#c3cbc1] bg-[#fbfcf8] px-3 py-3 text-[#1d2926] shadow-none focus:outline-2 focus:outline-[#bb4b32]"
+            className="box-border w-full rounded-[2px] border border-[#c3cbc1] bg-[#fbfcf8] px-3 py-[13px] text-[0.95rem] font-normal tracking-normal text-[#1d2926] normal-case shadow-none focus:border-[#bb4b32] focus:outline-2 focus:outline-[#bb4b32] focus:outline-offset-1"
             onChange={(event) => updateValue("name", event.target.value)}
             required
             type="text"
             value={values.name}
           />
         </label>
-        <label className="form-field">
+        <label className="grid gap-2 text-[#66716c] text-[0.75rem] font-bold tracking-[0.04em] uppercase">
           <span>Unit</span>
           <input
-            className="border border-[#c3cbc1] bg-[#fbfcf8] px-3 py-3 text-[#1d2926] shadow-none focus:outline-2 focus:outline-[#bb4b32]"
+            className="box-border w-full rounded-[2px] border border-[#c3cbc1] bg-[#fbfcf8] px-3 py-[13px] text-[0.95rem] font-normal tracking-normal text-[#1d2926] normal-case shadow-none focus:border-[#bb4b32] focus:outline-2 focus:outline-[#bb4b32] focus:outline-offset-1"
             onChange={(event) => updateValue("unit", event.target.value)}
             required
             type="text"
@@ -99,10 +99,10 @@ function ProductAddPage() {
           />
         </label>
         {productFields.map((field) => (
-          <label className="form-field" key={field.key}>
+          <label className="grid gap-2 text-[#66716c] text-[0.75rem] font-bold tracking-[0.04em] uppercase" key={field.key}>
             <span>{field.label}</span>
             <input
-              className="border border-[#c3cbc1] bg-[#fbfcf8] px-3 py-3 text-[#1d2926] shadow-none focus:outline-2 focus:outline-[#bb4b32]"
+              className="box-border w-full rounded-[2px] border border-[#c3cbc1] bg-[#fbfcf8] px-3 py-[13px] text-[0.95rem] font-normal tracking-normal text-[#1d2926] normal-case shadow-none focus:border-[#bb4b32] focus:outline-2 focus:outline-[#bb4b32] focus:outline-offset-1"
               min="0"
               onChange={(event) => updateValue(field.key, event.target.value)}
               required
@@ -112,15 +112,15 @@ function ProductAddPage() {
             />
           </label>
         ))}
-        <div className="form-actions">
+        <div className="col-span-full flex items-center gap-4 pt-2 max-[760px]:flex-col max-[760px]:items-start">
           <button
-            className="bg-[#1d2926] px-4.5 py-3 font-bold text-[#fffaf1] transition-colors hover:bg-[#bb4b32] disabled:cursor-wait disabled:opacity-60"
+            className="cursor-pointer rounded-[2px] border-0 bg-[#1d2926] px-[18px] py-[13px] text-[#fffaf1] [font-family:inherit] font-bold transition-colors enabled:hover:bg-[#bb4b32] disabled:cursor-wait disabled:opacity-60"
             disabled={status === "saving"}
             type="submit"
           >
             {status === "saving" ? "Adding..." : "Add product"}
           </button>
-          <span className={`save-status ${status}`} role="status">
+          <span className={`min-h-[1em] text-[#3f765e] text-[0.72rem] ${status === "error" ? "text-[#bb4b32]" : ""}`} role="status">
             {message}
           </span>
         </div>
